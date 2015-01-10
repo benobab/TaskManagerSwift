@@ -15,10 +15,10 @@
 		EA1970BD1A615B8B002085B2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1970BB1A615B8B002085B2 /* LaunchScreen.xib */; };
 		EA1970C91A615B8B002085B2 /* TaskManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1970C81A615B8B002085B2 /* TaskManagerTests.swift */; };
 		EA1970D71A615ECB002085B2 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1970D61A615ECB002085B2 /* TaskCell.swift */; };
-		EA1970DC1A616356002085B2 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1970DB1A616356002085B2 /* TaskModel.swift */; };
 		EA1970DE1A616486002085B2 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1970DD1A616486002085B2 /* AddTaskViewController.swift */; };
 		EA1970E01A61654B002085B2 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1970DF1A61654B002085B2 /* TaskDetailViewController.swift */; };
 		EA1970E21A6168FF002085B2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1970E11A6168FF002085B2 /* Date.swift */; };
+		EA4AEC3F1A6178C6006D1C43 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4AEC3E1A6178C6006D1C43 /* TaskModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,10 +44,10 @@
 		EA1970C71A615B8B002085B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA1970C81A615B8B002085B2 /* TaskManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManagerTests.swift; sourceTree = "<group>"; };
 		EA1970D61A615ECB002085B2 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskCell.swift; path = ../TaskCell.swift; sourceTree = "<group>"; };
-		EA1970DB1A616356002085B2 /* TaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		EA1970DD1A616486002085B2 /* AddTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		EA1970DF1A61654B002085B2 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		EA1970E11A6168FF002085B2 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		EA4AEC3E1A6178C6006D1C43 /* TaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				EA1970B11A615B8B002085B2 /* TaskManager.xcdatamodeld */,
+				EA4AEC3E1A6178C6006D1C43 /* TaskModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -148,7 +149,6 @@
 				EA1970DD1A616486002085B2 /* AddTaskViewController.swift */,
 				EA1970DF1A61654B002085B2 /* TaskDetailViewController.swift */,
 				EA1970B41A615B8B002085B2 /* ViewController.swift */,
-				EA1970DB1A616356002085B2 /* TaskModel.swift */,
 				EA1970E11A6168FF002085B2 /* Date.swift */,
 			);
 			name = Controllers;
@@ -259,8 +259,8 @@
 				EA1970DE1A616486002085B2 /* AddTaskViewController.swift in Sources */,
 				EA1970E21A6168FF002085B2 /* Date.swift in Sources */,
 				EA1970B51A615B8B002085B2 /* ViewController.swift in Sources */,
-				EA1970DC1A616356002085B2 /* TaskModel.swift in Sources */,
 				EA1970B31A615B8B002085B2 /* TaskManager.xcdatamodeld in Sources */,
+				EA4AEC3F1A6178C6006D1C43 /* TaskModel.swift in Sources */,
 				EA1970B01A615B8B002085B2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -457,6 +457,7 @@
 				EA1970CE1A615B8B002085B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EA1970CF1A615B8B002085B2 /* Build configuration list for PBXNativeTarget "TaskManagerTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +466,7 @@
 				EA1970D11A615B8B002085B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

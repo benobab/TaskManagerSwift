@@ -7,20 +7,19 @@
 //
 
 import UIKit
-
+import CoreData
 class TaskDetailViewController: UIViewController {
 
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    var mainVC: ViewController!
     var detailTaskModel: TaskModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         titleTextField.text = detailTaskModel.title
-        descriptionTextField.text = detailTaskModel.description
+        descriptionTextField.text = detailTaskModel.descriptionTask
         datePicker.date = detailTaskModel.date
         // Do any additional setup after loading the view.
     }
@@ -29,11 +28,13 @@ class TaskDetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
-        var task = TaskModel(title: titleTextField.text, description: descriptionTextField.text, date: datePicker.date, completed: false)
-        mainVC.baseArray[0][mainVC.tableView.indexPathForSelectedRow()!.row] = task
+        detailTaskModel.title = titleTextField.text
+        detailTaskModel.descriptionTask = descriptionTextField.text
+        detailTaskModel.date = datePicker.date
+        detailTaskModel.date = datePicker.date
+        (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
         navigationController?.popToRootViewControllerAnimated(true)
     }
 }

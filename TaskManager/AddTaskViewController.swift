@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import CoreData
 class AddTaskViewController: UIViewController {
 
     
@@ -15,9 +15,6 @@ class AddTaskViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
-    
-    //Pour communiquer avec les autres VC
-    var mainVC:ViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +32,20 @@ class AddTaskViewController: UIViewController {
         navigationController?.popToRootViewControllerAnimated(true)
     }
     @IBAction func addTaskButtonPressed(sender: UIBarButtonItem) {
-        var task = TaskModel(title: titleTextField.text, description: descriptionTextField.text, date: datePicker.date, completed : false)
-        mainVC.baseArray[0].append(task)
+        let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext
+        let entityDescription = NSEntityDescription.entityForName("TaskModel", inManagedObjectContext: managedObjectContext!)
+        let task = TaskModel(entity: entityDescription!,insertIntoManagedObjectContext : managedObjectContext!)
+        task.title = titleTextField.text
+        task.descriptionTask = descriptionTextField.text
+        task.date = datePicker.date
+        task.completed = false
+        
+        (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
+        
+        var request = NSFetchRequest(entityName: "TaskModel")
+        var error:NSError? = nil
+        
+        var results:NSArray = managedObjectContext!.executeFetchRequest(request, error: &error)!
         navigationController?.popToRootViewControllerAnimated(true)
     }
 }
