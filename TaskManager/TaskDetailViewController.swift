@@ -13,9 +13,15 @@ class TaskDetailViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
+    
+    
+    var detailTaskModel: TaskModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        titleTextField.text = detailTaskModel.title
+        descriptionTextField.text = detailTaskModel.description
+        datePicker.date = detailTaskModel.date
         // Do any additional setup after loading the view.
     }
 

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 struct TaskModel {
-    var task:String
-    var subTask:String
-    var date:String
+    var title:String
+    var description:String
+    var date:NSDate
 }

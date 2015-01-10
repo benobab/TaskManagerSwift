@@ -18,9 +18,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let task1 = TaskModel(task: "Study French", subTask: "Verbs", date: "01/14/2014")
-        let task2 = TaskModel(task: "Eat Dinner", subTask: "Burgers", date: "01/14/2014")
-        taskArray = [task1, task2, TaskModel(task: "Gym", subTask: "Leg Day", date: "01/14/2014")]
+        let date1 = Date.from(year: 2014, month: 05, day: 20)
+        let date2 = Date.from(year: 2014, month: 03, day: 3)
+        let date3 = Date.from(year: 2014, month: 12, day: 13)
+        
+        let task1 = TaskModel(title: "Study French", description: "Verbs", date: date1)
+        let task2 = TaskModel(title: "Eat Dinner", description: "Burgers", date: date2)
+        
+        taskArray = [task1, task2, TaskModel(title: "Gym", description: "Leg Day", date: date3)]
         
          self.tableView.reloadData()
     }
@@ -29,7 +34,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    //STORYBOARD FUNC
+    @IBAction func addTaskButtonPressed(sender: UIBarButtonItem) {
+        
+        performSegueWithIdentifier("mainToAdd", sender: self)
+    }
     
     
     
@@ -41,9 +50,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let thisTask = taskArray[indexPath.row]
         var cell:TaskCell = tableView.dequeueReusableCellWithIdentifier("taskCell") as TaskCell
-        cell.titleLabel.text = thisTask.task
-        cell.descriptionLabel.text = thisTask.subTask
-        cell.dateLabel.text = thisTask.date
+        cell.titleLabel.text = thisTask.title
+        cell.descriptionLabel.text = thisTask.description
+        cell.dateLabel.text = Date.toString(date: thisTask.date)
         return cell
         
     }
@@ -54,6 +63,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        var task:TaskModel = taskArray[indexPath.row]
+        performSegueWithIdentifier("mainToDetail", sender: self)
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "mainToAdd")
+        {
+            //
+        }
+        if(segue.identifier == "mainToDetail")
+        {
+            let detailViewController = segue.destinationViewController as TaskDetailViewController
+            detailViewController.detailTaskModel = taskArray[self.tableView.indexPathForSelectedRow()!.row]
+        }
     }
 
 }

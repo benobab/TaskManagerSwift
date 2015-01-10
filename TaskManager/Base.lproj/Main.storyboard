@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Tasks-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TaskManager" customModuleProvider="target" sceneMemberID="viewController">
@@ -62,18 +62,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="hez-j9-pY9"/>
+                    <navigationItem key="navigationItem" title="Tasks" id="HKa-lX-zVy">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="OKn-M1-kFK">
+                            <connections>
+                                <action selector="addTaskButtonPressed:" destination="BYZ-38-t0r" id="Mzf-5S-KAc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="Qix-Lw-r6v" id="y4q-Yv-4Vf"/>
+                        <outlet property="tableView" destination="Qix-Lw-r6v" id="nhN-7U-vDo"/>
                         <segue destination="nnL-PP-GFw" kind="show" identifier="mainToAdd" id="rrU-fr-C7h"/>
-                        <segue destination="mUU-NM-pHP" kind="push" id="1D6-fo-xR3"/>
+                        <segue destination="mUU-NM-pHP" kind="show" identifier="mainToDetail" id="1D6-fo-xR3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1253" y="429"/>
         </scene>
-        <!--Task Detail View Controller-->
+        <!--Task Details-->
         <scene sceneID="UBi-6F-FOX">
             <objects>
                 <viewController id="mUU-NM-pHP" customClass="TaskDetailViewController" customModule="TaskManager" customModuleProvider="target" sceneMemberID="viewController">
@@ -104,7 +110,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="TNf-xG-b79">
+                    <navigationItem key="navigationItem" title="Task Details" id="TNf-xG-b79">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="VwH-2R-WMH">
                             <connections>
                                 <action selector="doneButtonPressed:" destination="mUU-NM-pHP" id="DMu-i8-cFe"/>
@@ -119,9 +125,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0C4-qx-5HL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1250" y="1118"/>
+            <point key="canvasLocation" x="1253" y="1158"/>
         </scene>
-        <!--Add Task View Controller-->
+        <!--New Task-->
         <scene sceneID="dyT-SR-9eY">
             <objects>
                 <viewController id="nnL-PP-GFw" customClass="AddTaskViewController" customModule="TaskManager" customModuleProvider="target" sceneMemberID="viewController">
@@ -146,7 +152,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="0E1-Na-YdC">
+                    <navigationItem key="navigationItem" title="New Task" id="0E1-Na-YdC">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="8Uo-YR-gwx">
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="nnL-PP-GFw" id="c5P-h4-xoW"/>

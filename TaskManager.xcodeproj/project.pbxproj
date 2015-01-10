@@ -18,6 +18,7 @@
 		EA1970DC1A616356002085B2 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1970DB1A616356002085B2 /* TaskModel.swift */; };
 		EA1970DE1A616486002085B2 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1970DD1A616486002085B2 /* AddTaskViewController.swift */; };
 		EA1970E01A61654B002085B2 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1970DF1A61654B002085B2 /* TaskDetailViewController.swift */; };
+		EA1970E21A6168FF002085B2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1970E11A6168FF002085B2 /* Date.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		EA1970DB1A616356002085B2 /* TaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		EA1970DD1A616486002085B2 /* AddTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		EA1970DF1A61654B002085B2 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
+		EA1970E11A6168FF002085B2 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,8 +138,6 @@
 				EA1970B91A615B8B002085B2 /* Images.xcassets */,
 				EA1970BB1A615B8B002085B2 /* LaunchScreen.xib */,
 				EA1970B61A615B8B002085B2 /* Main.storyboard */,
-				EA1970DF1A61654B002085B2 /* TaskDetailViewController.swift */,
-				EA1970DD1A616486002085B2 /* AddTaskViewController.swift */,
 			);
 			name = Vue;
 			sourceTree = "<group>";
@@ -145,8 +145,11 @@
 		EA1970DA1A615EE9002085B2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EA1970DD1A616486002085B2 /* AddTaskViewController.swift */,
+				EA1970DF1A61654B002085B2 /* TaskDetailViewController.swift */,
 				EA1970B41A615B8B002085B2 /* ViewController.swift */,
 				EA1970DB1A616356002085B2 /* TaskModel.swift */,
+				EA1970E11A6168FF002085B2 /* Date.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				EA1970E01A61654B002085B2 /* TaskDetailViewController.swift in Sources */,
 				EA1970D71A615ECB002085B2 /* TaskCell.swift in Sources */,
 				EA1970DE1A616486002085B2 /* AddTaskViewController.swift in Sources */,
+				EA1970E21A6168FF002085B2 /* Date.swift in Sources */,
 				EA1970B51A615B8B002085B2 /* ViewController.swift in Sources */,
 				EA1970DC1A616356002085B2 /* TaskModel.swift in Sources */,
 				EA1970B31A615B8B002085B2 /* TaskManager.xcdatamodeld in Sources */,
