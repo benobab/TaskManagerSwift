@@ -113,10 +113,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if(indexPath.section == 0)
+        {
         let task = baseArray[indexPath.section][indexPath.row]
         var newTask = TaskModel(title: task.title, description: task.description, date: task.date, completed: true)
         baseArray[0].removeAtIndex(indexPath.row)
         baseArray[1].append(newTask)
+        }else if (indexPath.row == 1)
+        {
+            let task = baseArray[indexPath.section][indexPath.row]
+            var newTask = TaskModel(title: task.title, description: task.description, date: task.date, completed: false)
+            baseArray[1].removeAtIndex(indexPath.row)
+            baseArray[0].append(newTask)
+        
+        }
         tableView.reloadData()
     }
     
