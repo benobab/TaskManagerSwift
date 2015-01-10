@@ -97,6 +97,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
+    //TABLEVIEW OPTION
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 25
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "To do"
+        }
+        else {
+            return "Completed"
+        }
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        let task = baseArray[indexPath.section][indexPath.row]
+        var newTask = TaskModel(title: task.title, description: task.description, date: task.date, completed: true)
+        baseArray[0].removeAtIndex(indexPath.row)
+        baseArray[1].append(newTask)
+        tableView.reloadData()
+    }
+    
     
     
     //FONCTIONS UTILES
