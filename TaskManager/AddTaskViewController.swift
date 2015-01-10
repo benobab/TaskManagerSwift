@@ -10,8 +10,15 @@ import UIKit
 
 class AddTaskViewController: UIViewController {
 
+    
+    //STORYBOARD OUTLET
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    
+    //Pour communiquer avec les autres VC
+    var mainVC:ViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,6 +35,8 @@ class AddTaskViewController: UIViewController {
         navigationController?.popToRootViewControllerAnimated(true)
     }
     @IBAction func addTaskButtonPressed(sender: UIBarButtonItem) {
+        var task = TaskModel(title: titleTextField.text, description: descriptionTextField.text, date: datePicker.date)
+        mainVC.taskArray.append(task)
         navigationController?.popToRootViewControllerAnimated(true)
     }
 }

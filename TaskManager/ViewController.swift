@@ -34,6 +34,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.taskArray = taskArray.sorted(sortByDate)
+        self.tableView.reloadData()
+    }
+    
     //STORYBOARD FUNC
     @IBAction func addTaskButtonPressed(sender: UIBarButtonItem) {
         
@@ -71,13 +79,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "mainToAdd")
         {
-            //
+            let addTaskViewController = segue.destinationViewController as AddTaskViewController
+            addTaskViewController.mainVC = self
         }
         if(segue.identifier == "mainToDetail")
         {
             let detailViewController = segue.destinationViewController as TaskDetailViewController
             detailViewController.detailTaskModel = taskArray[self.tableView.indexPathForSelectedRow()!.row]
+            detailViewController.mainVC = self
         }
+    }
+    
+    
+    
+    
+    //FONCTIONS UTILES
+    
+    func sortByDate(taskOne:TaskModel, taskTwo:TaskModel) -> Bool {
+        return taskOne.date.timeIntervalSince1970 < taskTwo.date.timeIntervalSince1970
     }
 
 }

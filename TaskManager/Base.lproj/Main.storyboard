@@ -96,7 +96,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Yug-Ef-8QU">
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Yug-Ef-8QU">
                                 <rect key="frame" x="0.0" y="169" width="600" height="162"/>
                                 <date key="date" timeIntervalSinceReferenceDate="442590578.98468101">
                                     <!--2015-01-10 13:49:38 +0000-->
@@ -149,6 +149,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="qhl-Yt-AUL">
+                                <rect key="frame" x="0.0" y="148" width="600" height="162"/>
+                                <date key="date" timeIntervalSinceReferenceDate="442593015.21048403">
+                                    <!--2015-01-10 14:30:15 +0000-->
+                                </date>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -165,6 +171,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="datePicker" destination="qhl-Yt-AUL" id="tkp-Ol-3Gx"/>
                         <outlet property="descriptionTextField" destination="F4V-sa-gjm" id="N6Y-r8-6Je"/>
                         <outlet property="titleTextField" destination="C19-em-IzZ" id="gUj-Gs-E6e"/>
                     </connections>

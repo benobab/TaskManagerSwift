@@ -14,7 +14,7 @@ class TaskDetailViewController: UIViewController {
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    
+    var mainVC: ViewController!
     var detailTaskModel: TaskModel!
     
     override func viewDidLoad() {
@@ -32,7 +32,8 @@ class TaskDetailViewController: UIViewController {
     
 
     @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
-        
+        var task = TaskModel(title: titleTextField.text, description: descriptionTextField.text, date: datePicker.date)
+        mainVC.taskArray[self.mainVC.tableView.indexPathForSelectedRow()!.row] = task
         navigationController?.popToRootViewControllerAnimated(true)
     }
 }
