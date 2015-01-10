@@ -35,8 +35,8 @@ class AddTaskViewController: UIViewController {
         navigationController?.popToRootViewControllerAnimated(true)
     }
     @IBAction func addTaskButtonPressed(sender: UIBarButtonItem) {
-        var task = TaskModel(title: titleTextField.text, description: descriptionTextField.text, date: datePicker.date)
-        mainVC.taskArray.append(task)
+        var task = TaskModel(title: titleTextField.text, description: descriptionTextField.text, date: datePicker.date, completed : false)
+        mainVC.baseArray[0].append(task)
         navigationController?.popToRootViewControllerAnimated(true)
     }
 }

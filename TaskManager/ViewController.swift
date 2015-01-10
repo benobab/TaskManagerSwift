@@ -13,7 +13,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //STORYBOARD OUTLET
     @IBOutlet weak var tableView: UITableView!
     
-     var taskArray:[TaskModel] = []
+    var baseArray:[[TaskModel]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,11 +22,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let date2 = Date.from(year: 2014, month: 03, day: 3)
         let date3 = Date.from(year: 2014, month: 12, day: 13)
         
-        let task1 = TaskModel(title: "Study French", description: "Verbs", date: date1)
-        let task2 = TaskModel(title: "Eat Dinner", description: "Burgers", date: date2)
+        let task1 = TaskModel(title: "Study French", description: "Verbs", date: date1, completed: false)
+        let task2 = TaskModel(title: "Eat Dinner", description: "Burgers", date: date2, completed: false)
         
-        taskArray = [task1, task2, TaskModel(title: "Gym", description: "Leg Day", date: date3)]
-        
+        let taskArray = [task1, task2, TaskModel(title: "Gym", description: "Leg Day", date: date3, completed: false)]
+        var completedArray = [TaskModel(title:"Code", description:"Task Project", date:date2, completed:true)]
+        baseArray = [taskArray, completedArray]
          self.tableView.reloadData()
     }
 
@@ -38,7 +39,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewWillAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.taskArray = taskArray.sorted(sortByDate)
+        self.baseArray[0] = baseArray[0].sorted(sortByDate)
         self.tableView.reloadData()
     }
     
@@ -53,10 +54,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //DATASOURCE
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         return taskArray.count
+         return baseArray[section].count
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let thisTask = taskArray[indexPath.row]
+        let thisTask = baseArray[indexPath.section][indexPath.row]
         var cell:TaskCell = tableView.dequeueReusableCellWithIdentifier("taskCell") as TaskCell
         cell.titleLabel.text = thisTask.title
         cell.descriptionLabel.text = thisTask.description
@@ -65,13 +66,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return baseArray.count
+    }
+    
     
     
     //DELEGATE
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        var task:TaskModel = taskArray[indexPath.row]
+        var task:TaskModel = baseArray[indexPath.section][indexPath.row]
         performSegueWithIdentifier("mainToDetail", sender: self)
         
     }
@@ -85,7 +90,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if(segue.identifier == "mainToDetail")
         {
             let detailViewController = segue.destinationViewController as TaskDetailViewController
-            detailViewController.detailTaskModel = taskArray[self.tableView.indexPathForSelectedRow()!.row]
+            let indexPath = self.tableView.indexPathForSelectedRow()
+            detailViewController.detailTaskModel = baseArray[indexPath!.section][indexPath!.row]
             detailViewController.mainVC = self
         }
     }
