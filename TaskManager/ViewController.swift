@@ -98,7 +98,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return "Complete Task"
         }else
         {
-        return "UnComplete Task"
+        return "To Do"
         }
     }
     
@@ -124,6 +124,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
+            if( fetchedResultController.sections!.count == 1)
+            {
+            return "Yellow : ToDo / Red : Done"
+            }
             return "To do"
         }
         else {
