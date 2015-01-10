@@ -99,7 +99,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var error : NSError?
         var items:[AnyObject]
         items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
-        if(indexPath.section==0 && items.count == 0)
+        if(items.count == 0){
+            return "Complete Task"
+        }
+        else if(items.count > 0 && fetchedResultController.sections!.count == 1)
+        {
+            return "To Do"
+        }
+        else if(indexPath.section==0 )
         {
         return "Complete Task"
         }else
@@ -135,6 +142,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var error : NSError?
         var items:[AnyObject]
         items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
+        
+        
         if section == 0 {
             if( fetchedResultController.sections!.count == 1 && items.count > 0)
             {
