@@ -65,11 +65,107 @@
                     <navigationItem key="navigationItem" id="hez-j9-pY9"/>
                     <connections>
                         <outlet property="tableView" destination="Qix-Lw-r6v" id="y4q-Yv-4Vf"/>
+                        <segue destination="nnL-PP-GFw" kind="show" identifier="mainToAdd" id="rrU-fr-C7h"/>
+                        <segue destination="mUU-NM-pHP" kind="push" id="1D6-fo-xR3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1252" y="427"/>
+            <point key="canvasLocation" x="1253" y="429"/>
+        </scene>
+        <!--Task Detail View Controller-->
+        <scene sceneID="UBi-6F-FOX">
+            <objects>
+                <viewController id="mUU-NM-pHP" customClass="TaskDetailViewController" customModule="TaskManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lxb-u8-2dJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Csq-o0-sVA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Wbv-BY-0wX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zkd-UD-xhd">
+                                <rect key="frame" x="16" y="71" width="287" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Yug-Ef-8QU">
+                                <rect key="frame" x="0.0" y="169" width="600" height="162"/>
+                                <date key="date" timeIntervalSinceReferenceDate="442590578.98468101">
+                                    <!--2015-01-10 13:49:38 +0000-->
+                                </date>
+                            </datePicker>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jPE-h6-4tu">
+                                <rect key="frame" x="16" y="109" width="287" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="TNf-xG-b79">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="VwH-2R-WMH">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="mUU-NM-pHP" id="DMu-i8-cFe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="Yug-Ef-8QU" id="t5U-Ey-bUV"/>
+                        <outlet property="descriptionTextField" destination="jPE-h6-4tu" id="yTX-w9-fBG"/>
+                        <outlet property="titleTextField" destination="Zkd-UD-xhd" id="Yrh-El-bdL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0C4-qx-5HL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1250" y="1118"/>
+        </scene>
+        <!--Add Task View Controller-->
+        <scene sceneID="dyT-SR-9eY">
+            <objects>
+                <viewController id="nnL-PP-GFw" customClass="AddTaskViewController" customModule="TaskManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BOO-Y6-Sc9"/>
+                        <viewControllerLayoutGuide type="bottom" id="Y0F-iB-HWJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JqS-jw-5EH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title Task ..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C19-em-IzZ">
+                                <rect key="frame" x="16" y="72" width="241" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Subtask ..." borderStyle="roundedRect" placeholder="Title Task ..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F4V-sa-gjm">
+                                <rect key="frame" x="16" y="110" width="241" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="0E1-Na-YdC">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="8Uo-YR-gwx">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="nnL-PP-GFw" id="c5P-h4-xoW"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Add Task" id="Rv2-UM-0kJ">
+                            <connections>
+                                <action selector="addTaskButtonPressed:" destination="nnL-PP-GFw" id="cZE-Ec-bxC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="descriptionTextField" destination="F4V-sa-gjm" id="N6Y-r8-6Je"/>
+                        <outlet property="titleTextField" destination="C19-em-IzZ" id="gUj-Gs-E6e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uft-MM-1NT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1956" y="429"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9sz-1X-l8h">
