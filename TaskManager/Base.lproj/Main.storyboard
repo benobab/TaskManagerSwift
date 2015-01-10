@@ -144,7 +144,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Tasks" id="HKa-lX-zVy">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="3Sy-g2-gOR">
+                        <barButtonItem key="leftBarButtonItem" id="3Sy-g2-gOR">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XFc-pR-424">
                                 <rect key="frame" x="16" y="7" width="114" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

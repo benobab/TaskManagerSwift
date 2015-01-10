@@ -93,7 +93,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String! {
-        if(indexPath.section==0)
+        let fetchRequest = NSFetchRequest(entityName: "TaskModel")
+        fetchRequest.predicate = NSPredicate(format:"completed == \(true)") //Ici on récupère tous les objets du core data dont completed = true
+        
+        var error : NSError?
+        var items:[AnyObject]
+        items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
+        if(indexPath.section==0 && items.count == 0)
         {
         return "Complete Task"
         }else
@@ -123,10 +129,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let fetchRequest = NSFetchRequest(entityName: "TaskModel")
+        fetchRequest.predicate = NSPredicate(format:"completed == \(true)") //Ici on récupère tous les objets du core data dont completed = true
+        
+        var error : NSError?
+        var items:[AnyObject]
+        items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
         if section == 0 {
-            if( fetchedResultController.sections!.count == 1)
+            if( fetchedResultController.sections!.count == 1 && items.count > 0)
             {
-            return "Yellow : ToDo / Red : Done"
+            return "Completed"
             }
             return "To do"
         }
