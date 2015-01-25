@@ -64,27 +64,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //DATASOURCE
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        let fetchRequest = NSFetchRequest(entityName: "TaskModel")
-//        
-//            fetchRequest.predicate = NSPredicate(format:"categorie = %@", current_Category) //Ici on récupère tous les objets du core data dont completed = true
-//        
-//        
-//        var error : NSError?
-//        var items:[AnyObject]
-//        items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
-//        return items.count
         return fetchedResultController.sections![section].numberOfObjects
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        let fetchRequest = NSFetchRequest(entityName: "TaskModel")
-//        fetchRequest.predicate = NSPredicate(format:"categorie = %@", current_Category) //Ici on récupère tous les objets du core data dont completed = true
-//        
-//        var error : NSError?
-//        var items:[AnyObject]
-//        items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
-//        if(items.count != 0)
-//        {
-//        let thisTask = items[indexPath.row] as TaskModel
         let thisTask = fetchedResultController.objectAtIndexPath(indexPath) as TaskModel
         var cell:TaskCell = tableView.dequeueReusableCellWithIdentifier("taskCell") as TaskCell
         

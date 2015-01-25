@@ -94,13 +94,14 @@ class CategorieViewController: UIViewController, UITableViewDelegate, UITableVie
             return [deleteAction,renameAction]
         }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let fetchRequest = NSFetchRequest(entityName: "CategorieModel")
-        fetchRequest.predicate = NSPredicate(format:"isActive == \(true)") //Ici on récupère tous les objets du core data dont completed = true
-        
-        var error : NSError?
-        var items:[AnyObject]
-        items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
-        return items.count
+//        let fetchRequest = NSFetchRequest(entityName: "CategorieModel")
+//        fetchRequest.predicate = NSPredicate(format:"isActive == \(true)") //Ici on récupère tous les objets du core data dont completed = true
+//        
+//        var error : NSError?
+//        var items:[AnyObject]
+//        items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
+          return self.fetchedResultController.sections![section].numberOfObjects
+//        return items.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
