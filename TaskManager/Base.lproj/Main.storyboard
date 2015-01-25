@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Categorie(s)-->
+        <!--Categories-->
         <scene sceneID="AGV-83-Yjk">
             <objects>
                 <viewController id="gTR-Bt-sW2" customClass="CategorieViewController" customModule="TaskManager" customModuleProvider="target" sceneMemberID="viewController">
@@ -62,7 +62,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="BGt-jt-qPX" secondAttribute="trailing" constant="-16" id="euP-Ec-vCP"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Categorie(s)" id="kjc-I1-4aM">
+                    <navigationItem key="navigationItem" title="Categories" id="kjc-I1-4aM">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="wFV-CA-W2j">
                             <connections>
                                 <action selector="addCategorieButtonPressed:" destination="gTR-Bt-sW2" id="RGQ-yA-x4X"/>
