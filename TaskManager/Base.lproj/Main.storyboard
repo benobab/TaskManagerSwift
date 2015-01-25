@@ -32,6 +32,7 @@
                                                     <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="21"/>
                                                     <color key="textColor" red="0.73544034089999999" green="0.33461265200000001" blue="0.1770871312" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -133,7 +134,7 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description Task" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggI-h4-kNO">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description Task" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggI-h4-kNO">
                                                     <rect key="frame" x="20" y="40" width="547" height="53"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="53" id="aGf-zC-G31"/>
@@ -281,13 +282,18 @@
                                 </date>
                             </datePicker>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jPE-h6-4tu">
-                                <rect key="frame" x="16" y="109" width="195" height="30"/>
+                                <rect key="frame" x="16" y="109" width="568" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.92451563839999995" blue="0.36103977110000002" alpha="0.68999999999999995" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="195" id="vvo-jt-zr5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="vvo-jt-zr5"/>
+                                    </mask>
+                                </variation>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -295,6 +301,7 @@
                             <constraint firstItem="jPE-h6-4tu" firstAttribute="top" secondItem="Zkd-UD-xhd" secondAttribute="bottom" constant="8" id="0s0-v6-l6l"/>
                             <constraint firstItem="Yug-Ef-8QU" firstAttribute="leading" secondItem="Wbv-BY-0wX" secondAttribute="leadingMargin" constant="-16" id="1IF-sH-Lix"/>
                             <constraint firstItem="jPE-h6-4tu" firstAttribute="leading" secondItem="Wbv-BY-0wX" secondAttribute="leadingMargin" id="1m2-d1-YsK"/>
+                            <constraint firstItem="jPE-h6-4tu" firstAttribute="trailing" secondItem="Wbv-BY-0wX" secondAttribute="trailingMargin" id="Hyh-VR-Wtq"/>
                             <constraint firstItem="Yug-Ef-8QU" firstAttribute="top" secondItem="jPE-h6-4tu" secondAttribute="bottom" constant="30" id="JRL-EA-Ttk"/>
                             <constraint firstItem="Zkd-UD-xhd" firstAttribute="top" secondItem="Lxb-u8-2dJ" secondAttribute="bottom" constant="7" id="YFp-dk-TEe"/>
                             <constraint firstItem="Zkd-UD-xhd" firstAttribute="leading" secondItem="Wbv-BY-0wX" secondAttribute="leadingMargin" id="ajS-Qb-cHV"/>
@@ -330,15 +337,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Subtask ..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F4V-sa-gjm">
-                                <rect key="frame" x="16" y="110" width="241" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.92451563839999995" blue="0.36103977110000002" alpha="0.68999999999999995" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="241" id="duK-XL-MnJ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="go"/>
-                            </textField>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="qhl-Yt-AUL">
                                 <rect key="frame" x="0.0" y="148" width="600" height="162"/>
                                 <date key="date" timeIntervalSinceReferenceDate="442593015.21048403">
@@ -354,6 +352,20 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="go"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Subtask ..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F4V-sa-gjm">
+                                <rect key="frame" x="16" y="110" width="568" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.92451563839999995" blue="0.36103977110000002" alpha="0.68999999999999995" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="241" id="duK-XL-MnJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="go"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="duK-XL-MnJ"/>
+                                    </mask>
+                                </variation>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -364,6 +376,7 @@
                             <constraint firstItem="qhl-Yt-AUL" firstAttribute="leading" secondItem="JqS-jw-5EH" secondAttribute="leadingMargin" constant="-16" id="jtE-rE-I4Q"/>
                             <constraint firstItem="F4V-sa-gjm" firstAttribute="top" secondItem="C19-em-IzZ" secondAttribute="bottom" constant="8" id="mjT-gl-Ovp"/>
                             <constraint firstItem="F4V-sa-gjm" firstAttribute="leading" secondItem="JqS-jw-5EH" secondAttribute="leadingMargin" id="n6e-Cf-0BR"/>
+                            <constraint firstItem="F4V-sa-gjm" firstAttribute="trailing" secondItem="JqS-jw-5EH" secondAttribute="trailingMargin" id="zt2-XP-BWb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Task" id="0E1-Na-YdC">

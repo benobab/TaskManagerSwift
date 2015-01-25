@@ -40,6 +40,7 @@ class CategorieViewController: UIViewController, UITableViewDelegate, UITableVie
         var alert = UIAlertController(title: "Add Category", message: "Choose a categorie name", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addTextFieldWithConfigurationHandler { (textField) -> Void in
             textField.placeholder = "Add a categorie Name "
+            textField.autocapitalizationType = UITextAutocapitalizationType.Words
             textField.secureTextEntry = false //don't know why
         }
         let texftField = alert.textFields![0] as UITextField
@@ -77,6 +78,19 @@ class CategorieViewController: UIViewController, UITableViewDelegate, UITableVie
 
 }
 
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+        var renameAction = UITableViewRowAction(style: .Normal, title: "Rename") { (action, indexPath) -> Void in
+            tableView.editing = false
+            self.renameCategorie(indexPath)
+        }
+        renameAction.backgroundColor = UIColor.grayColor()
+        var deleteAction = UITableViewRowAction(style: .Default, title: "Delete") { (action, indexPath) -> Void in
+            tableView.editing = false
+            self.deletedCategorie(indexPath)
+        }
+        deleteAction.backgroundColor = UIColor.redColor()
+            return [deleteAction,renameAction]
+        }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let fetchRequest = NSFetchRequest(entityName: "CategorieModel")
         fetchRequest.predicate = NSPredicate(format:"isActive == \(true)") //Ici on récupère tous les objets du core data dont completed = true
@@ -158,5 +172,66 @@ class CategorieViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     
+    
+    func deletedCategorie(indexPath:NSIndexPath) {
+        let thisCategorie = fetchedResultController.objectAtIndexPath(indexPath) as CategorieModel
+        managedObjectContext.deleteObject(thisCategorie as NSManagedObject)
+        //après avoir supprimé la catégorie, on supprime toutes les tâches qui ont pour attribut cette catégorie
+        let fetchRequest = NSFetchRequest(entityName: "TaskModel")
+        fetchRequest.predicate = NSPredicate(format:"categorie = %@",thisCategorie.categorieName) //Ici on récupère tous les objets du core data dont completed = true
+        
+        var error : NSError?
+        var items:[AnyObject]
+        items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
+        for item in items{
+            managedObjectContext.deleteObject(item as NSManagedObject)
+        }
+        
+        
+        managedObjectContext.save(nil)
+        self.tableView.reloadData()
+    }
+    
+    func renameCategorie(indexPath:NSIndexPath)
+    {
+        let thisCategorie = self.fetchedResultController.objectAtIndexPath(indexPath) as CategorieModel
+        //ici renomer catégorie ET toutes les tâches de cette catégorie
+        var alert = UIAlertController(title: "Rename Category", message: "Choose a categorie name", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addTextFieldWithConfigurationHandler { (textField) -> Void in
+            textField.placeholder = thisCategorie.categorieName
+            textField.autocapitalizationType = UITextAutocapitalizationType.Words
+            textField.secureTextEntry = false //don't know why
+        }
+        let texftField = alert.textFields![0] as UITextField
+        
+        let renameCategorieName = UIAlertAction(title: "Save", style: UIAlertActionStyle.Default) { (alertAction) -> Void in
+            if(texftField.text.isEmpty == false)
+            {
+                let fetchRequest = NSFetchRequest(entityName: "TaskModel")
+                fetchRequest.predicate = NSPredicate(format:"categorie = %@",thisCategorie.categorieName) //Ici on récupère tous les objets de la catégorie courrante
+                var error : NSError?
+                var items:[AnyObject]
+                items = self.managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
+                for item in items{
+                    let task = item as TaskModel
+                    task.categorie = texftField.text
+                }
+                thisCategorie.categorieName = texftField.text
+                self.managedObjectContext.save(nil)
+                self.tableView.reloadData()
+            }
+        }
+        alert.addAction(renameCategorieName)
+        
+        let cancelButon = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (cancelAction) -> Void in
+            
+        }
+        alert.addAction(cancelButon)
+        
+        self.presentViewController(alert,animated: true, completion: nil)
+        
+        
+        
+    }
 
 }
