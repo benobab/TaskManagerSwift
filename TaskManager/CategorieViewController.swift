@@ -100,7 +100,8 @@ class CategorieViewController: UIViewController, UITableViewDelegate, UITableVie
 //        var error : NSError?
 //        var items:[AnyObject]
 //        items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
-          return self.fetchedResultController.sections![section].numberOfObjects
+        println(fetchedResultController.sections![section].numberOfObjects)
+        return self.fetchedResultController.sections![section].numberOfObjects
 //        return items.count
     }
     
@@ -174,6 +175,7 @@ class CategorieViewController: UIViewController, UITableViewDelegate, UITableVie
         managedObjectContext.deleteObject(thisCategorie as NSManagedObject)
         
         managedObjectContext.save(nil)
+        self.fetchedResultController.performFetch(&error)
         self.tableView.reloadData()
     }
     
