@@ -15,6 +15,8 @@ class AddTaskViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
+
+    var current_Category:String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +41,7 @@ class AddTaskViewController: UIViewController {
         task.descriptionTask = descriptionTextField.text
         task.date = datePicker.date
         task.completed = false
+        task.categorie = current_Category
         
         (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
         
@@ -46,6 +49,6 @@ class AddTaskViewController: UIViewController {
         var error:NSError? = nil
         
         var results:NSArray = managedObjectContext!.executeFetchRequest(request, error: &error)!
-        navigationController?.popToRootViewControllerAnimated(true)
+        navigationController?.popViewControllerAnimated(true)
     }
 }

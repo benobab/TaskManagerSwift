@@ -35,6 +35,7 @@ class TaskDetailViewController: UIViewController {
         detailTaskModel.date = datePicker.date
         detailTaskModel.date = datePicker.date
         (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
-        navigationController?.popToRootViewControllerAnimated(true)
+//        navigationController?.popToRootViewControllerAnimated(true)
+        navigationController?.popViewControllerAnimated(true)
     }
 }
