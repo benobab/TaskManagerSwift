@@ -64,29 +64,34 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //DATASOURCE
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let fetchRequest = NSFetchRequest(entityName: "TaskModel")
-        fetchRequest.predicate = NSPredicate(format:"categorie = %@", current_Category) //Ici on récupère tous les objets du core data dont completed = true
-        
-        var error : NSError?
-        var items:[AnyObject]
-        items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
-        return items.count
+//        let fetchRequest = NSFetchRequest(entityName: "TaskModel")
+//        
+//            fetchRequest.predicate = NSPredicate(format:"categorie = %@", current_Category) //Ici on récupère tous les objets du core data dont completed = true
+//        
+//        
+//        var error : NSError?
+//        var items:[AnyObject]
+//        items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
+//        return items.count
+        return fetchedResultController.sections![section].numberOfObjects
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let fetchRequest = NSFetchRequest(entityName: "TaskModel")
-        fetchRequest.predicate = NSPredicate(format:"categorie = %@", current_Category) //Ici on récupère tous les objets du core data dont completed = true
-        
-        var error : NSError?
-        var items:[AnyObject]
-        items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
-        if(items.count != 0)
-        {
-        let thisTask = items[indexPath.row] as TaskModel
+//        let fetchRequest = NSFetchRequest(entityName: "TaskModel")
+//        fetchRequest.predicate = NSPredicate(format:"categorie = %@", current_Category) //Ici on récupère tous les objets du core data dont completed = true
+//        
+//        var error : NSError?
+//        var items:[AnyObject]
+//        items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
+//        if(items.count != 0)
+//        {
+//        let thisTask = items[indexPath.row] as TaskModel
+        let thisTask = fetchedResultController.objectAtIndexPath(indexPath) as TaskModel
         var cell:TaskCell = tableView.dequeueReusableCellWithIdentifier("taskCell") as TaskCell
         
         cell.titleLabel.text = thisTask.title
         cell.descriptionLabel.text = thisTask.descriptionTask
         cell.dateLabel.text = Date.toString(date: thisTask.date)
+        cell.completedTask = thisTask.completed
         if(thisTask.completed == true)
         {
             cell.backgroundColor = UIColor(red: (253/255.0), green: (174/255.0), blue: (143/255.0), alpha: 1.0)
@@ -95,12 +100,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.backgroundColor = UIColor(red: (247/255.0), green: (251/255.0), blue: (145/255.0), alpha: 1.0)
         }
         return cell
-        }else {
-            return UITableViewCell()
         }
+//    else {
+//            return UITableViewCell()
+//        }
+    
         
-        
-    }
+//    }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return fetchedResultController.sections!.count
@@ -112,30 +118,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //DELEGATE
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("mainToDetail", sender: self)
+//        let fetchRequest = NSFetchRequest(entityName: "TaskModel")
+//        fetchRequest.predicate = NSPredicate(format:"categorie = %@", current_Category) //Ici on récupère tous les objets du core data dont completed = true
+//        
+//        var error : NSError?
+//        var items:[AnyObject]
+//        items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
+//        if(items.count != 0)
+//        {
+//            let thisTask = items[indexPath.row] as TaskModel
+//            
+//            performSegueWithIdentifier("mainToDetail", sender: thisTask)
+//        }
+        let thisTask = fetchedResultController.objectAtIndexPath(indexPath) as TaskModel
+        performSegueWithIdentifier("mainToDetail", sender: thisTask)
+
         
     }
     
     func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String! {
-        let fetchRequest = NSFetchRequest(entityName: "TaskModel")
-        fetchRequest.predicate = NSPredicate(format:"completed == \(true) AND categorie = %@",current_Category) //Ici on récupère tous les objets du core data dont completed = true
-        
-        var error : NSError?
-        var items:[AnyObject]
-        items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
-        if(items.count == 0){
-            return "Complete Task"
-        }
-        else if(items.count > 0 && fetchedResultController.sections!.count == 1)
-        {
+        let cell = self.tableView.cellForRowAtIndexPath(indexPath) as TaskCell
+        if (cell.completedTask == true) {
             return "To Do"
-        }
-        else if(indexPath.section==0 )
-        {
-        return "Complete Task"
-        }else
-        {
-        return "To Do"
+        }else {
+            return "Complete Task"
         }
     }
     
@@ -147,6 +153,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         if(segue.identifier == "mainToDetail")
         {
+            let thisTask = sender as TaskModel
             let detailViewController = segue.destinationViewController as TaskDetailViewController
             let indexPath = self.tableView.indexPathForSelectedRow()
             detailViewController.detailTaskModel = fetchedResultController.objectAtIndexPath(indexPath!) as TaskModel
@@ -168,39 +175,44 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var items:[AnyObject]
         items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
         
-        if section == 0 {
-                        if( items.count > 0)
-                        {
-                        return "Completed"
-                        }
-                        return "To do"
-                    }
-                    else if (items.count == 0){
-                        return "To Do"
-                    }
-//
-//        
-//        if section == 0 {
-//            if( fetchedResultController.sections!.count == 1 && items.count > 0)
-//            {
-//            return "Completed"
-//            }
-//            return "To do"
-//        }
-//        else {
-//            return "Completed"
-//        }
-        return "ToDo"
+//        if(items.count > 0 && tableView.numberOfSections() == 1){ // y'a des completed et il y a une seule section donc que des completed
+//            return "Completed"}
+//        else if( items.count == 0){ // il y a aucun completed donc que des TODO
+//            return "To Do"}
+//        else if (items.count > 0 && section == 0) //il y a des completed mais la section est 0 donc ToDo
+//        {
+//            return "To Do"
+//        }else { return "Completed"} //section 1 on met completed
+
+        if(self.tableView.numberOfSections() == 1)
+        {
+            if(items.count > 0)
+            {
+                return "Completed"
+            }else {
+                return "To Do"
+                }
+        }else
+        {
+            if(section == 0)
+            {
+                return "To Do"
+            }else
+            {
+                return "Completed"
+            }
+        }
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        let fetchRequest = NSFetchRequest(entityName: "TaskModel")
-        fetchRequest.predicate = NSPredicate(format:"categorie = %@",current_Category) //Ici on récupère tous les objets du core data dont completed = true
-        
-        var error : NSError?
-        var items:[AnyObject]
-        items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
-        let thisTask = items[indexPath.row] as TaskModel
+//        let fetchRequest = NSFetchRequest(entityName: "TaskModel")
+//        fetchRequest.predicate = NSPredicate(format:"categorie = %@",current_Category) //Ici on récupère tous les objets du core data dont completed = true
+//        
+//        var error : NSError?
+//        var items:[AnyObject]
+//        items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
+//        let thisTask = items[indexPath.row] as TaskModel
+        let thisTask = fetchedResultController.objectAtIndexPath(indexPath) as TaskModel
         if (thisTask.completed == false) {
             thisTask.completed = true
         }
@@ -228,7 +240,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func getFetchedResultController() -> NSFetchedResultsController{
-         fetchedResultController = NSFetchedResultsController(fetchRequest: taskFetchRequest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: "categorie", cacheName: nil)
+         fetchedResultController = NSFetchedResultsController(fetchRequest: taskFetchRequest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: "completed", cacheName: nil)
 //        TODO : vérifier si ICI on choisi sectionNameKeyPath : "categorie" ou alors on remet "completed"
         return fetchedResultController
     }
