@@ -12,6 +12,7 @@ class CategorieCell: UITableViewCell {
     
     
     @IBOutlet weak var categorieLabel: UILabel!
+    @IBOutlet weak var nombreLabel : UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -100,18 +100,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //DELEGATE
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        let fetchRequest = NSFetchRequest(entityName: "TaskModel")
-//        fetchRequest.predicate = NSPredicate(format:"categorie = %@", current_Category) //Ici on récupère tous les objets du core data dont completed = true
-//        
-//        var error : NSError?
-//        var items:[AnyObject]
-//        items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
-//        if(items.count != 0)
-//        {
-//            let thisTask = items[indexPath.row] as TaskModel
-//            
-//            performSegueWithIdentifier("mainToDetail", sender: thisTask)
-//        }
         let thisTask = fetchedResultController.objectAtIndexPath(indexPath) as TaskModel
         performSegueWithIdentifier("mainToDetail", sender: thisTask)
 
@@ -156,15 +144,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var error : NSError?
         var items:[AnyObject]
         items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
-        
-//        if(items.count > 0 && tableView.numberOfSections() == 1){ // y'a des completed et il y a une seule section donc que des completed
-//            return "Completed"}
-//        else if( items.count == 0){ // il y a aucun completed donc que des TODO
-//            return "To Do"}
-//        else if (items.count > 0 && section == 0) //il y a des completed mais la section est 0 donc ToDo
-//        {
-//            return "To Do"
-//        }else { return "Completed"} //section 1 on met completed
 
         if(self.tableView.numberOfSections() == 1)
         {

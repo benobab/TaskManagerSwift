@@ -31,7 +31,7 @@ class AddTaskViewController: UIViewController {
     
     //ACTION STORYBOARD
     @IBAction func cancelButtonPressed(sender: UIBarButtonItem) {
-        navigationController?.popToRootViewControllerAnimated(true)
+        navigationController?.popViewControllerAnimated(true)
     }
     @IBAction func addTaskButtonPressed(sender: UIBarButtonItem) {
         let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext

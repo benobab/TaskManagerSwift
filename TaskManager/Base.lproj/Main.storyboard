@@ -34,10 +34,22 @@
                                                     <nil key="highlightedColor"/>
                                                     <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(4/15)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uVA-Jb-6gt">
+                                                    <rect key="frame" x="548" y="17" width="44" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="6ip-7m-CMG"/>
+                                                        <constraint firstAttribute="width" constant="44" id="kMV-Ho-E25"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="AmericanTypewriter-CondensedBold" family="American Typewriter" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerX" secondItem="EWD-6f-yiu" secondAttribute="centerX" id="OsV-ax-kVC"/>
+                                                <constraint firstItem="uVA-Jb-6gt" firstAttribute="trailing" secondItem="ear-zc-al1" secondAttribute="trailingMargin" id="VBf-Yq-5WO"/>
                                                 <constraint firstItem="EWD-6f-yiu" firstAttribute="leading" secondItem="ear-zc-al1" secondAttribute="leadingMargin" id="Vm3-gp-9Ts"/>
+                                                <constraint firstItem="uVA-Jb-6gt" firstAttribute="top" secondItem="ear-zc-al1" secondAttribute="topMargin" constant="9" id="W8H-7o-tdF"/>
                                                 <constraint firstAttribute="centerY" secondItem="EWD-6f-yiu" secondAttribute="centerY" constant="-2" id="WZw-6a-ioc"/>
                                                 <constraint firstItem="EWD-6f-yiu" firstAttribute="top" secondItem="ear-zc-al1" secondAttribute="topMargin" constant="2" id="pS5-Kz-RQo"/>
                                                 <constraint firstItem="EWD-6f-yiu" firstAttribute="trailing" secondItem="ear-zc-al1" secondAttribute="trailingMargin" id="veP-Sb-a6w"/>
@@ -45,6 +57,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="categorieLabel" destination="EWD-6f-yiu" id="kuo-pi-3pI"/>
+                                            <outlet property="nombreLabel" destination="uVA-Jb-6gt" id="AZp-6v-X0T"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -55,6 +68,7 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="8Nm-2F-tz3" firstAttribute="top" secondItem="BGt-jt-qPX" secondAttribute="bottom" id="6jS-CF-yZQ"/>
                             <constraint firstItem="BGt-jt-qPX" firstAttribute="top" secondItem="51a-Hp-KV3" secondAttribute="bottom" constant="-64" id="EQp-VH-fkq"/>
@@ -75,6 +89,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ipv-Qs-eUe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="327-GX-R3I"/>
             </objects>
             <point key="canvasLocation" x="1173" y="429"/>
         </scene>
@@ -107,7 +122,7 @@
                                                         <constraint firstAttribute="width" constant="180" id="jdY-aX-Saa"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="10/12/14" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBb-pg-Iu2">
@@ -122,7 +137,7 @@
                                                         <constraint firstAttribute="width" constant="124" id="xzA-B4-MOA"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
@@ -140,7 +155,7 @@
                                                         <constraint firstAttribute="height" constant="53" id="aGf-zC-G31"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -224,6 +239,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="LGe-vq-Hxn" secondAttribute="trailing" constant="-16" id="kSX-2m-GGK"/>
                             <constraint firstItem="Qix-Lw-r6v" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-64" id="r1I-ih-8B4"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="UUQ-aj-ucR" appends="YES" id="8GZ-AO-vV5"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Tasks" id="HKa-lX-zVy">
                         <barButtonItem key="leftBarButtonItem" id="3Sy-g2-gOR">
@@ -251,6 +269,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="UUQ-aj-ucR"/>
             </objects>
             <point key="canvasLocation" x="1849" y="429"/>
         </scene>

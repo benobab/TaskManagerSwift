@@ -15,7 +15,6 @@ class CategorieViewController: UIViewController, UITableViewDelegate, UITableVie
     let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
     var fetchedResultController:NSFetchedResultsController = NSFetchedResultsController()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -94,30 +93,21 @@ class CategorieViewController: UIViewController, UITableViewDelegate, UITableVie
             return [deleteAction,renameAction]
         }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        let fetchRequest = NSFetchRequest(entityName: "CategorieModel")
-//        fetchRequest.predicate = NSPredicate(format:"isActive == \(true)") //Ici on récupère tous les objets du core data dont completed = true
-//        
-//        var error : NSError?
-//        var items:[AnyObject]
-//        items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
-        println(fetchedResultController.sections![section].numberOfObjects)
         return self.fetchedResultController.sections![section].numberOfObjects
-//        return items.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let thisCategorie = fetchedResultController.objectAtIndexPath(indexPath) as CategorieModel
+        let result = self.getNombreTaskForCategorie(thisCategorie.categorieName)
         var cell:CategorieCell = tableView.dequeueReusableCellWithIdentifier("CategorieCell") as CategorieCell
         cell.categorieLabel.text = thisCategorie.categorieName
+        cell.nombreLabel.text = "(\(result))"
         return cell
         
     }
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        ICI il faut envoyer en argument un nom de catégorie
-//        Ce nom de catégorie doit être ajouté dans le model de tâche, comme ça on les trie facilement
-//        Il faudra donc supprimer les tâches où completed == true ET categorie == categorie_Current
         let thisCategorie = fetchedResultController.objectAtIndexPath(indexPath) as CategorieModel
         performSegueWithIdentifier("showTaskCategorie", sender: thisCategorie.categorieName)
     }
@@ -145,6 +135,17 @@ class CategorieViewController: UIViewController, UITableViewDelegate, UITableVie
     func getFetchedResultController() -> NSFetchedResultsController{
         fetchedResultController = NSFetchedResultsController(fetchRequest: categorieFetchRequest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: "isActive", cacheName: nil)
         return fetchedResultController
+    }
+    
+    
+    func getNombreTaskForCategorie(categorie: String) -> Int{
+        let fetchRequest = NSFetchRequest(entityName: "TaskModel")
+        fetchRequest.predicate = NSPredicate(format: "categorie = %@ AND completed == \(false)",categorie)
+        var error : NSError?
+        var items:[AnyObject]
+        items = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)!
+
+        return items.count
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
