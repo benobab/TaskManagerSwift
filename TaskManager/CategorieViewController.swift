@@ -122,11 +122,12 @@ class CategorieViewController: UIViewController, UITableViewDelegate, UITableVie
     
     //une seule section pour le moment ensuite on pourra supprimer des catégories
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return self.fetchedResultController.sections!.count
     }
     
     func categorieFetchRequest()-> NSFetchRequest{
         let fetchRequest = NSFetchRequest(entityName: "CategorieModel")
+        NSFetchedResultsController.deleteCacheWithName(nil)
         let completedDescriptor = NSSortDescriptor(key: "isActive", ascending: true)
         fetchRequest.sortDescriptors = [completedDescriptor]
         
